@@ -1,0 +1,18 @@
+<html ng-app="myApp">
+    <head>
+        <link rel="stylesheet" href="/style.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+        <script type="text/javascript" src="/script.js"></script>
+    </head>
+    <body ng-controller="MainController">
+        <p ng-show="isLoading">Loading data...</p>
+        <ul ng-hide="isLoading">
+            <li ng-repeat="user in users">
+                <div class="item">{{user.name}}</div>
+                <div class="item">{{user.lastName}}</div> 
+                <div class="del" >&times; remove</div>
+            </li>
+        </ul>
+    </body>
+</html>
