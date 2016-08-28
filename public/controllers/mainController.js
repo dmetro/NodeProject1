@@ -4,7 +4,7 @@ module.exports = function mainController($scope , $http)
         $scope.users = [];
 
        
-        console.log("dima tester");
+      //  console.log("dima tester");
 /*        $http({
             method: 'GET',
             url: '/notes'

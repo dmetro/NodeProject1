@@ -11,10 +11,11 @@ var app = express();
 app.use('/', express.static('./public'));
 
 // Set routing
-app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use('/notes', require('./controllers/notesController.js'));
 app.use('/user', require('./controllers/userController.js'));
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', function (req, res) {
   res.redirect('/notes');
 });

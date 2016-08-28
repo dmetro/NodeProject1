@@ -8,7 +8,7 @@ router.post('/checkuser' , function (req, res) {
    // console.log("requst start");
     var user = [{name:'Dima' , lastName :'1234'},{name:'Dima1' , lastName :'12343'}];
     console.log('req.body',req.body);
-    if(req.body.User !=null)
+    if(req.body !=null)
     {
 
     }
