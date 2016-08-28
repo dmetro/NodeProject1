@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 angular.module('myApp', [])
 
     .controller('MainController', function ($scope, $http) {
@@ -24,3 +25,10 @@ angular.module('myApp', [])
             console.log('goToRegistarion');
         };
     });
+=======
+angular.module('myApp', ['ui.router'])
+    //browserify  ./public/script.js -o ./public/appbundle.js 
+    .config(require('./config/router.js'))
+    .controller('MainController', require('./controllers/mainController.js'))
+    
+>>>>>>> 14fb280994a8eb4f0fb4af784db63e1adebf52c6
