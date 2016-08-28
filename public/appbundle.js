@@ -4,15 +4,24 @@ module.exports = function ($stateProvider, $urlRouterProvider) {
     $stateProvider
      .state('login', {
          url: '/login',
-         templateUrl: '/app/views/login/login.html',
+         templateUrl: '/views/login.html',
          controller: require('../controllers/loginController.js')
      })
+     
 };
 },{"../controllers/loginController.js":2}],2:[function(require,module,exports){
-module.exports = function Login($scope , $http)
+module.exports = function Login($scope , $http , backend_service)
 {
-       $scope.isLoading = true;
-        
+    //   $scope.isLoading = true;
+      console.log('init login controller') ; 
+      $scope.User = {};
+      $scope.Login = function()
+      {
+          var user =  backend_service.Login($scope.User);
+          console.log("Login",$scope.User);
+          console.log("User",user);
+
+      }
 };
 
 },{}],3:[function(require,module,exports){
@@ -23,8 +32,7 @@ module.exports = function mainController($scope , $http)
 
        
         console.log("dima tester");
-
-        $http({
+/*        $http({
             method: 'GET',
             url: '/notes'
         }).then(function (response) {
@@ -36,12 +44,37 @@ module.exports = function mainController($scope , $http)
         }, function (err) {
             console.log(err);
         });
+        */
 };
-
 },{}],4:[function(require,module,exports){
+
 angular.module('myApp', ['ui.router'])
     //browserify  ./public/script.js -o ./public/appbundle.js 
     .config(require('./config/router.js'))
+    .service('backend_service',require('./service/backend_service.js'))
     .controller('MainController', require('./controllers/mainController.js'))
     
-},{"./config/router.js":1,"./controllers/mainController.js":3}]},{},[4]);
+
+},{"./config/router.js":1,"./controllers/mainController.js":3,"./service/backend_service.js":5}],5:[function(require,module,exports){
+module.exports = function backend_service($http) {
+
+
+    this.requests = {};
+
+    this.Login = function (data)
+        {
+           // return data;
+      return $http.post('/user/checkuser').then(function (data)
+            {
+            return response //it is only content of file, what is JSON dictionary with terns
+            }, function (err)
+            {
+            err['text'] = 'Something happens when obtaining dictionary file for languages!';
+            $state.go('error',{'error_obj':err});
+            })
+     };
+    
+}
+
+
+},{}]},{},[4]);

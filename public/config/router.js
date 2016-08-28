@@ -3,7 +3,8 @@ module.exports = function ($stateProvider, $urlRouterProvider) {
     $stateProvider
      .state('login', {
          url: '/login',
-         templateUrl: '/app/views/login/login.html',
+         templateUrl: '/views/login.html',
          controller: require('../controllers/loginController.js')
      })
+     
 };
