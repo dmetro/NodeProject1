@@ -1,4 +1,5 @@
 angular.module('myApp', [])
+
     .controller('MainController', function ($scope, $http) {
         $scope.isLoading = true;
         $scope.users = [];
@@ -18,4 +19,8 @@ angular.module('myApp', [])
         }, function (err) {
             console.log(err);
         });
+        $scope.goToRegitration = function()
+        {
+            console.log('goToRegistarion');
+        };
     });
