@@ -58,14 +58,14 @@ angular.module('myApp', ['ui.router'])
 
 },{"./config/router.js":1,"./controllers/loginController.js":2,"./controllers/mainController.js":3,"./service/backend_service.js":5}],5:[function(require,module,exports){
 module.exports = function backend_service($http) {
-
-
-    this.requests = {};
-
-         this.Login = function (data) {
-        return $http.post('/user/checkuser', data)
+    
+        this.Login = function (data) {
+         console.log('api',data);
+         return $http.post('/user/checkuser', data)
             .then(function (response) {
+                   console.log('response',response);
                 return response
+               
             },
         function (err) {
             err['text'] = 'Something happens when obtaining dictionary file for languages!';
