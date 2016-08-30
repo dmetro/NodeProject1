@@ -1,7 +1,8 @@
-module.exports = function mainController($scope , $http)
+module.exports = function mainController($scope , $http,$rootScope)
 {
        $scope.isLoading = true;
         $scope.users = [];
+        $rootScope.beforeLogin = false;
 
        
       //  console.log("dima tester");

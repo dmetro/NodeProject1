@@ -22,6 +22,6 @@ app.get('/', function (req, res) {
 
 
 // Start app
-app.listen(3001,function () {
+app.listen(3000,function () {
     console.log("server started");
 });

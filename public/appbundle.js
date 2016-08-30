@@ -7,28 +7,38 @@ module.exports = function ($stateProvider, $urlRouterProvider) {
          templateUrl: '/views/login.html',
          controller: require('../controllers/loginController.js')
      })
+     .state('todo', {
+         url: '/todo',
+         templateUrl: '/views/todo.html',
+         controller: require('../controllers/todoController.js')
+     })
      
 };
-},{"../controllers/loginController.js":2}],2:[function(require,module,exports){
-module.exports = function Login($scope , $http , backend_service)
+},{"../controllers/loginController.js":2,"../controllers/todoController.js":4}],2:[function(require,module,exports){
+module.exports = function Login($scope , $http , backend_service,$location ,$rootScope)
 {
     //   $scope.isLoading = true;
       console.log('init login controller') ; 
+      $scope.beforeLogin = $rootScope.beforeLogin 
       $scope.User = {};
       $scope.Login = function()
       {
-          var user =  backend_service.Login($scope.User);
-          console.log("Login",$scope.User);
-          console.log("User",user);
+          $rootScope.beforeLogin = true;
+          $location.path('/todo');
+       
+        //  var user =  backend_service.Login($scope.User);
+         // console.log("Login",$scope.User);
+         // console.log("User",user);
 
       }
 };
 
 },{}],3:[function(require,module,exports){
-module.exports = function mainController($scope , $http)
+module.exports = function mainController($scope , $http,$rootScope)
 {
        $scope.isLoading = true;
         $scope.users = [];
+        $rootScope.beforeLogin = false;
 
        
       //  console.log("dima tester");
@@ -47,6 +57,13 @@ module.exports = function mainController($scope , $http)
         */
 };
 },{}],4:[function(require,module,exports){
+module.exports = function todo($scope,$rootScope)
+{
+      
+     $scope.beforeLogin = $rootScope.beforeLogin;
+    console.log('init to do contrller');
+}
+},{}],5:[function(require,module,exports){
 
 angular.module('myApp', ['ui.router'])
     //browserify  ./public/script.js -o ./public/appbundle.js 
@@ -56,16 +73,15 @@ angular.module('myApp', ['ui.router'])
     .controller('loginController', require('./controllers/loginController.js'))
     
 
-},{"./config/router.js":1,"./controllers/loginController.js":2,"./controllers/mainController.js":3,"./service/backend_service.js":5}],5:[function(require,module,exports){
+},{"./config/router.js":1,"./controllers/loginController.js":2,"./controllers/mainController.js":3,"./service/backend_service.js":6}],6:[function(require,module,exports){
 module.exports = function backend_service($http) {
-
-
-    this.requests = {};
-
-         this.Login = function (data) {
-        return $http.post('/user/checkuser', data)
+    
+        this.Login = function (data) {
+         console.log('api',data);
+         return $http.post('/user/checkuser', data)
             .then(function (response) {
                 return response
+               
             },
         function (err) {
             err['text'] = 'Something happens when obtaining dictionary file for languages!';
@@ -76,4 +92,4 @@ module.exports = function backend_service($http) {
 }
 
 
-},{}]},{},[4]);
+},{}]},{},[5]);
