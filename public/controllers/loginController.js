@@ -14,4 +14,15 @@ module.exports = function Login($scope , $http , backend_service,$location ,$roo
          // console.log("User",user);
 
       }
+       $scope.goToRegitration = function()
+      {
+          $rootScope.beforeLogin = false;
+          $location.path('/signup');
+       
+        //  var user =  backend_service.Login($scope.User);
+         // console.log("Login",$scope.User);
+         // console.log("User",user);
+
+      }
+      
 };

@@ -12,9 +12,14 @@ module.exports = function ($stateProvider, $urlRouterProvider) {
          templateUrl: '/views/todo.html',
          controller: require('../controllers/todoController.js')
      })
+     .state('signup', {
+         url: '/signup',
+         templateUrl: '/views/signup.html',
+         controller: require('../controllers/signupController.js')
+     })
      
 };
-},{"../controllers/loginController.js":2,"../controllers/todoController.js":4}],2:[function(require,module,exports){
+},{"../controllers/loginController.js":2,"../controllers/signupController.js":4,"../controllers/todoController.js":5}],2:[function(require,module,exports){
 module.exports = function Login($scope , $http , backend_service,$location ,$rootScope)
 {
     //   $scope.isLoading = true;
@@ -31,15 +36,33 @@ module.exports = function Login($scope , $http , backend_service,$location ,$roo
          // console.log("User",user);
 
       }
+       $scope.goToRegitration = function()
+      {
+          $rootScope.beforeLogin = false;
+          $location.path('/signup');
+       
+        //  var user =  backend_service.Login($scope.User);
+         // console.log("Login",$scope.User);
+         // console.log("User",user);
+
+      }
+      
 };
 
 },{}],3:[function(require,module,exports){
-module.exports = function mainController($scope , $http,$rootScope)
+module.exports = function mainController($scope , $http,$rootScope, $location)
 {
        $scope.isLoading = true;
         $scope.users = [];
         $rootScope.beforeLogin = false;
 
+     $scope.Logout = function()
+     {
+         console.log('logout');
+         $rootScope.beforeLogin = false;
+         $location.path('/login');
+
+     }
        
       //  console.log("dima tester");
 /*        $http({
@@ -57,13 +80,31 @@ module.exports = function mainController($scope , $http,$rootScope)
         */
 };
 },{}],4:[function(require,module,exports){
-module.exports = function todo($scope,$rootScope)
+module.exports =  function Signup ($scope , $rootScope, $location)
+{
+    console.log('Signup');
+    $scope.Signup = function()
+    {
+        console.log('Do it');
+        $location.path('/login');
+    }
+}
+},{}],5:[function(require,module,exports){
+module.exports = function todo($scope,$rootScope,$location)
 {
       
      $scope.beforeLogin = $rootScope.beforeLogin;
+
+     $scope.Logout = function()
+     {
+         console.log('logout');
+         $rootScope.beforeLogin = false;
+          $location.path('/login');
+
+     }
     console.log('init to do contrller');
 }
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 
 angular.module('myApp', ['ui.router'])
     //browserify  ./public/script.js -o ./public/appbundle.js 
@@ -73,7 +114,7 @@ angular.module('myApp', ['ui.router'])
     .controller('loginController', require('./controllers/loginController.js'))
     
 
-},{"./config/router.js":1,"./controllers/loginController.js":2,"./controllers/mainController.js":3,"./service/backend_service.js":6}],6:[function(require,module,exports){
+},{"./config/router.js":1,"./controllers/loginController.js":2,"./controllers/mainController.js":3,"./service/backend_service.js":7}],7:[function(require,module,exports){
 module.exports = function backend_service($http) {
     
         this.Login = function (data) {
@@ -92,4 +133,4 @@ module.exports = function backend_service($http) {
 }
 
 
-},{}]},{},[5]);
+},{}]},{},[6]);
