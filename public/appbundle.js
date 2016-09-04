@@ -17,9 +17,13 @@ module.exports = function Login($scope , $http , backend_service)
       $scope.User = {};
       $scope.Login = function()
       {
-          var user =  backend_service.Login($scope.User);
-          console.log("Login",$scope.User);
-          console.log("User",user);
+          var response =  backend_service.Login($scope.User);
+          if(response!=null)
+          {
+              console.log(response.d);
+           //   console.log("data",response.d);
+
+          }
 
       }
 };
@@ -60,12 +64,11 @@ angular.module('myApp', ['ui.router'])
 module.exports = function backend_service($http) {
     
         this.Login = function (data) {
-         console.log('api',data);
+       //  console.log('api',data);
          return $http.post('/user/checkuser', data)
-            .then(function (response) {
-                   console.log('response',response);
-                return response
-               
+          .then(function (response) {
+                  // console.log('response',response);
+                return response.data;  
             },
         function (err) {
             err['text'] = 'Something happens when obtaining dictionary file for languages!';
