@@ -9,6 +9,23 @@
         <script type="text/javascript" src="/appbundle.js"></script>
     </head>
     <body ng-controller="mainController">
+        <div ng-show="beforeLogin" class="ui secondary pointing menu">
+  <a class="active item">
+    Home
+  </a>
+  <a class="item">
+    Messages
+  </a>
+  <a class="item">
+    Friends
+  </a>
+  <div class="right menu">
+    <a class="ui item" ng-click="Logout();">
+      Logout
+    </a>
+  </div>
+</div>
+
     <div ui-view></div>
 
 

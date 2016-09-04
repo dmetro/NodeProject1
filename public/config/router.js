@@ -6,5 +6,15 @@ module.exports = function ($stateProvider, $urlRouterProvider) {
          templateUrl: '/views/login.html',
          controller: require('../controllers/loginController.js')
      })
+     .state('todo', {
+         url: '/todo',
+         templateUrl: '/views/todo.html',
+         controller: require('../controllers/todoController.js')
+     })
+     .state('signup', {
+         url: '/signup',
+         templateUrl: '/views/signup.html',
+         controller: require('../controllers/signupController.js')
+     })
      
 };
